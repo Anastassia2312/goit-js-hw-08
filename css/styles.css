@@ -28,8 +28,10 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  column-gap: 24px;
+  row-gap: 24px;
 }
 
-.gallery-image {
+.gallery-item {
   width: calc((100% - 48px) / 3);
 }

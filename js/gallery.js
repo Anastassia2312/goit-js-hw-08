@@ -83,14 +83,8 @@ const galleryItems = images.reduce(
 </li>`,
   ""
 );
-galleryList.insertAdjacentHTML("afterbegin", galleryItems);
 
-const handleKeydown = (event) => {
-  if (event.key === "Escape") {
-    instance.close();
-    document.removeEventListener("keydown", handleKeydown);
-  }
-};
+galleryList.insertAdjacentHTML("afterbegin", galleryItems);
 
 const handleClick = (event) => {
   event.preventDefault();
@@ -99,7 +93,6 @@ const handleClick = (event) => {
   }
 
   const link = event.target.dataset.source;
-  console.log(link);
 
   const instance = basicLightbox.create(
     `<div class="modal">
@@ -107,17 +100,52 @@ const handleClick = (event) => {
     </div>`,
     {
       onShow: () => {
-        document.addEventListener("click", handleClick);
+        document.addEventListener("keydown", handleKeydown);
       },
       onClose: () => {
-        document.removeEventListener("click", handleClick);
+        document.removeEventListener("keydown", handleKeydown);
       },
     }
   );
   instance.show();
+
+  const handleKeydown = (elem) => {
+    if (elem.key === "Escape") {
+      instance.close();
+    }
+  };
 };
-
 galleryList.addEventListener("click", handleClick);
-galleryList.removeEventListener("click", handleClick);
 
-document.addEventListener("keydown", handleKeydown);
+/*const newGallery = () => {
+  galleryList.innerHTML = galleryItems;
+  galleryList.addEventListener("click", handleClick);
+};
+newGallery();*/
+
+/*function onGalleryClick(event) {
+  event.preventDefault();
+  if (event.target.nodeName !== "IMG") {
+    return;
+  }
+  const url = event.target.dataset.source;
+  const modal = basicLightbox.create(`<img class="modal" src="${url}">`, {
+    onShow: () => {
+      document.addEventListener("keydown", onKeyPress);
+    },
+    onClose: () => {
+      document.removeEventListener("keydown", onKeyPress);
+    },
+  });
+
+  modal.show();
+
+  function onKeyPress(elem) {
+    if (elem.key === "Escape") {
+      modal.close();
+    }
+  }
+}*/
+
+/*document.addEventListener("click", handleClick);
+document.removeEventListener("click", handleClick);*/
