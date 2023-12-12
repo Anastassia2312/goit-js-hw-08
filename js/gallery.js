@@ -116,36 +116,3 @@ const handleClick = (event) => {
   };
 };
 galleryList.addEventListener("click", handleClick);
-
-/*const newGallery = () => {
-  galleryList.innerHTML = galleryItems;
-  galleryList.addEventListener("click", handleClick);
-};
-newGallery();*/
-
-/*function onGalleryClick(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  const url = event.target.dataset.source;
-  const modal = basicLightbox.create(`<img class="modal" src="${url}">`, {
-    onShow: () => {
-      document.addEventListener("keydown", onKeyPress);
-    },
-    onClose: () => {
-      document.removeEventListener("keydown", onKeyPress);
-    },
-  });
-
-  modal.show();
-
-  function onKeyPress(elem) {
-    if (elem.key === "Escape") {
-      modal.close();
-    }
-  }
-}*/
-
-/*document.addEventListener("click", handleClick);
-document.removeEventListener("click", handleClick);*/
