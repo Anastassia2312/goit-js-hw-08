@@ -1,5 +1,3 @@
-"use strict";
-
 const images = [
   {
     preview:
@@ -66,13 +64,15 @@ const images = [
   },
 ];
 
+("use strict");
+
 const galleryList = document.querySelector(".gallery");
 
 const galleryItems = images.reduce(
   (html, galleryItem) =>
     html +
     `<li class="gallery-item">
-  <a class="gallery-link" href="${galleryItem.original} download">
+  <a class="gallery-link" href="${galleryItem.original}">
     <img
       class="gallery-image"
       src="${galleryItem.preview}"
@@ -84,19 +84,19 @@ const galleryItems = images.reduce(
   ""
 );
 
-galleryList.insertAdjacentHTML("afterbegin", galleryItems);
+galleryList.insertAdjacentHTML("beforeend", galleryItems);
+
+const handleKeydown = (elem) => {
+  if (elem.key === "Escape") {
+    instance.close();
+  }
+};
 
 const handleClick = (event) => {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
     return;
   }
-
-  const handleKeydown = (elem) => {
-    if (elem.key === "Escape") {
-      instance.close();
-    }
-  };
 
   const link = event.target.dataset.source;
 
