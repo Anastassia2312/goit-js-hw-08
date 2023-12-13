@@ -92,6 +92,12 @@ const handleClick = (event) => {
     return;
   }
 
+  const handleKeydown = (elem) => {
+    if (elem.key === "Escape") {
+      instance.close();
+    }
+  };
+
   const link = event.target.dataset.source;
 
   const instance = basicLightbox.create(
@@ -108,11 +114,5 @@ const handleClick = (event) => {
     }
   );
   instance.show();
-
-  const handleKeydown = (elem) => {
-    if (elem.key === "Escape") {
-      instance.close();
-    }
-  };
 };
 galleryList.addEventListener("click", handleClick);
